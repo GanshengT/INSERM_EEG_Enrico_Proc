@@ -438,7 +438,7 @@ def asr_process_on_epoch(epoch2correct, epochYWfiltered,state):
     V=np.real(Vtmp[:,np.argsort(D)])
     D=np.real(D[np.argsort(D)])
     
-    
+    reconstruct = False
     maxdims = int(np.fix(0.66*C))
     
     #determine which components to keep (variance below directional threshold or not admissible for rejection)
@@ -446,6 +446,7 @@ def asr_process_on_epoch(epoch2correct, epochYWfiltered,state):
     
     
     trivial = keep.all()
+    
     # update the reconstruction matrix R (reconstruct artifact components using the mixing matrix)
     if trivial:
         R = np.eye(C)
@@ -456,10 +457,11 @@ def asr_process_on_epoch(epoch2correct, epochYWfiltered,state):
             demux[icov,:] = VT[:,icov]*keep
         demux = np.transpose(demux)
         R = np.dot(np.dot(state['M'],np.linalg.pinv(demux)),V.T)
+        reconstruct = True
     
     EpochClean = np.dot(R,epoch2correct)
 
-    return EpochClean
+    return EpochClean, reconstruct
 
 def YW_filter(Data,srate,iirstate_in):
 #     FilterB, FilterA : Coefficients of an IIR filter that is used to shape the spectrum of the signal
