@@ -2,14 +2,21 @@
 """
 Created on Fri Jul 12 12:56:37 2019
 
+updated on  Jul 15, anntation changed
+
 @author: gansheng.tan
 """
 
 # # Below are personalised functions -> to py script and import
 
 
-
 import warnings
+
+def events_time_forward(events,forward_time):
+    ### forward_time in second
+    for event in events[0]:
+        event[0]=event[0]-forward_time*512
+    return events
 
 def removeItem_from_dict(d,key):
     r = dict(d)
@@ -45,13 +52,13 @@ def mne_annotation_postpone (pptime, annotations):
     
         
 
-def mne_annotation_recode_by_adding(section,state,annotations):
+def mne_annotation_recode_by_adding(session,state,annotations):
     onset = []
     duration = []
     description = []
     for i in range(annotations.__len__()):
         if annotations.__getitem__(i)['description'] in ['131.0','132.0']:
-            onset,duration,description = mne_annotation_recode_info_extract(section=section,state=state,
+            onset,duration,description = mne_annotation_recode_info_extract(session=session,state=state,
                                                                         original_annotation = 
                                                                         annotations.__getitem__(i),
                                                                        onset=onset,duration=duration,
@@ -67,82 +74,47 @@ def mne_annotation_recode_by_adding(section,state,annotations):
             continue
     onset.append(0.0)
     duration.append(0.0)
-    description.append(mne_annotation_add_baseline(section=section,state=state))
+    description.append(mne_annotation_add_baseline(session=session,state=state))
     annotations.append(onset=onset,duration=duration,description=description)
     print ('annotation engineering succeed')
     return True
 
-def mne_annotation_add_baseline(section,state):
-    if section == '1':
+def mne_annotation_add_baseline(session,state):
+    if session == '1':
         if state == 'VD':
-            return '113.0'
+            return '111.0'
         elif state == 'FA':
-            return '123.0'
+            return '211.0'
         elif state == 'OP':
-            return '133.0'
+            return '311.0'
         else:
             warnings.warn("unknown state detected", DeprecationWarning)
-    elif section == '2':
+    elif session == '2':
         if state == 'VD':
-            return '213.0'
+            return '112.0'
         elif state == 'FA':
-            return '223.0'
+            return '212.0'
         elif state == 'OP':
-            return '233.0'
+            return '312.0'
         else:
             warnings.warn("unknown state detected", DeprecationWarning)
     else:
-        warnings.warn("add baseline function only apply on rawfile having 2 sections", DeprecationWarning)
+        warnings.warn("add baseline function only apply on rawfile having 2 sessions", DeprecationWarning)
     return '999.0'
         
 
-def mne_annotation_recode_info_extract(section,state,original_annotation,onset,duration,description):
-    if section =='1':
+def mne_annotation_recode_info_extract(session,state,original_annotation,onset,duration,description):
+    if session =='1':
         if state == 'VD':
-            if original_annotation['description']=='131.0':
-                onset.append(original_annotation['onset'])
-                duration.append(original_annotation['duration'])
-                description.append('111.0')
-                
-            elif original_annotation['description']=='132.0':
-                onset.append(original_annotation['onset'])
-                duration.append(original_annotation['duration'])
-                description.append('112.0')
-            else:
-                print('this function only detect safe and threat period, please check original annotations')
-        elif state == 'FA':
             if original_annotation['description']=='131.0':
                 onset.append(original_annotation['onset'])
                 duration.append(original_annotation['duration'])
                 description.append('121.0')
-
+                
             elif original_annotation['description']=='132.0':
-                onset.append(original_annotation['onset'])
-                duration.append(original_annotation['duration'])
-                description.append('122.0')
-            else:
-                print('this function only detect safe and threat period, please check original annotations')
-        elif state == 'OP':
-            if original_annotation['description']=='131.0':
                 onset.append(original_annotation['onset'])
                 duration.append(original_annotation['duration'])
                 description.append('131.0')
-            elif original_annotation['description']=='132.0':
-                onset.append(original_annotation['onset'])
-                duration.append(original_annotation['duration'])
-                description.append('132.0')
-            else:
-                print('this function only detect VD, FA, OP states, please check original annotations')
-    elif section =='2':
-        if state == 'VD':
-            if original_annotation['description']=='131.0':
-                onset.append(original_annotation['onset'])
-                duration.append(original_annotation['duration'])
-                description.append('211.0')
-            elif original_annotation['description']=='132.0':
-                onset.append(original_annotation['onset'])
-                duration.append(original_annotation['duration'])
-                description.append('212.0')
             else:
                 print('this function only detect safe and threat period, please check original annotations')
         elif state == 'FA':
@@ -150,24 +122,59 @@ def mne_annotation_recode_info_extract(section,state,original_annotation,onset,d
                 onset.append(original_annotation['onset'])
                 duration.append(original_annotation['duration'])
                 description.append('221.0')
+
             elif original_annotation['description']=='132.0':
                 onset.append(original_annotation['onset'])
                 duration.append(original_annotation['duration'])
-                description.append('222.0')
+                description.append('231.0')
             else:
                 print('this function only detect safe and threat period, please check original annotations')
         elif state == 'OP':
             if original_annotation['description']=='131.0':
                 onset.append(original_annotation['onset'])
                 duration.append(original_annotation['duration'])
-                description.append('231.0')
+                description.append('321.0')
             elif original_annotation['description']=='132.0':
                 onset.append(original_annotation['onset'])
                 duration.append(original_annotation['duration'])
-                description.append('123.0')
+                description.append('331.0')
+            else:
+                print('this function only detect VD, FA, OP states, please check original annotations')
+    elif session =='2':
+        if state == 'VD':
+            if original_annotation['description']=='131.0':
+                onset.append(original_annotation['onset'])
+                duration.append(original_annotation['duration'])
+                description.append('122.0')
+            elif original_annotation['description']=='132.0':
+                onset.append(original_annotation['onset'])
+                duration.append(original_annotation['duration'])
+                description.append('132.0')
+            else:
+                print('this function only detect safe and threat period, please check original annotations')
+        elif state == 'FA':
+            if original_annotation['description']=='131.0':
+                onset.append(original_annotation['onset'])
+                duration.append(original_annotation['duration'])
+                description.append('222.0')
+            elif original_annotation['description']=='132.0':
+                onset.append(original_annotation['onset'])
+                duration.append(original_annotation['duration'])
+                description.append('232.0')
+            else:
+                print('this function only detect safe and threat period, please check original annotations')
+        elif state == 'OP':
+            if original_annotation['description']=='131.0':
+                onset.append(original_annotation['onset'])
+                duration.append(original_annotation['duration'])
+                description.append('322.0')
+            elif original_annotation['description']=='132.0':
+                onset.append(original_annotation['onset'])
+                duration.append(original_annotation['duration'])
+                description.append('332.0')
             else:
                 print('this function only detect VD, FA, OP states, please check original annotations')
     else:
-        print('3rd section dected, please check annotations')
+        print('3rd session dected, please check annotations')
     return(onset,duration,description)
         
