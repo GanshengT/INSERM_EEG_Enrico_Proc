@@ -8,18 +8,29 @@
 # -*- coding: utf-8 -*-
 """
 ===============================================
-Preprocessing on Enrico data using MNE and ASR
+Preprocessing on Enrico data using MNE and ASR - cluster version
 ===============================================
-We firstly define subject dictionary as well as state list, reject dict, then we import eeglab format 
-Raw data with MNE package. We apply:
-1) a notch filter to remove powerline artifact (50 Hz)
-2) a 1Hz-100Hz band-pass filter
+We firstly import subject list from sbatch 
+we define session list (1, 2), state list (VD, FA, OP), reject dict, 
+then we import eeglab format Raw data of one state during one session for single subject with MNE package. We apply:
+1) make sure that there is event 254 and event 255, and crop the raw data between 254 and 255
+2) a notch filter to remove powerline artifact (50 Hz)
+3) a 1Hz-100Hz band-pass filter
 
-Then concatenate the data of the same session
+Then concatenate the data of the same session with annotation engineering, detail utils please turn to 
+utils_preProcessingWorkflowJuly05.py
 3) ASR and ICA fitting:
-        ====> output = full_epoch fif file that save the the full recording for one subject
-
-Note: version designed for custer-run 
+        
+4) Autoreject and concatenate two sessions
+====> output = full_epoch fif file that save the the full recording for one subject
+Note: 
+1. exception : subject 36, some subject can have several 254,255 events
+------ please refer to excel Enrico recording summary.xlsx
+2. events code: state + condition + session 
+    1. state: 1:VD 2:FA 3:OP
+    2. condition: 1:baseline 2:safe 3:threat
+    3. session: 1:session1 2:session2
+3. we fix sampling rate at 512 = for those file whose sfreq = 2048, we do a downsampling
 
 Suggestions:
 1) decide infomation storage format
@@ -80,9 +91,8 @@ session_list=['1','2']
 # state_list = ['VD','FA','OP']
 state_list = ['VD','FA','OP']
 power_freq_array = [50]
-reject_raw_data_session1 = {'10':['FA','VD'],'21':['VD'],'29':['VD','FA','OP'],'30':['FA'],'36':['OP'],'35':['VD']}
-reject_raw_data_session2 = {'10':['VD'], '21':['FA','VD'],
-                '22':['OP'], '57':['OP','FA'], '82':['FA','OP','VD']}
+reject_raw_data_session1 = {'29':['VD','FA','OP'],'30':['FA'],'36':['OP'],'74':['FA','OP','VD'],'35':['VD']}
+reject_raw_data_session2 = {'74':['FA','OP','VD'],'55':['VD']}
 
 # bad channel rejection is not apllied in the preproc, bad channels will be defined by eyes later
 bad_channels={'94':{'1':['P2']},
@@ -100,7 +110,37 @@ bad_channels={'94':{'1':['P2']},
               '35':{'1':['T7','T8'],'2':['T8','PO8']},
               '36':{'1':['P2','PO4'],'2':['P2','PO4']},
               '37':{'1':['Iz']},
-              '38':{'2':['TP8']}
+              '38':{'2':['TP8']},
+              '39':{'1':['P2'],'2':['P2','FT8']},
+              '40':{'1':['P2','TP7'],'2':['P2','TP7']},
+              '42':{'1':['P2'],'2':['P2']},
+              '50':{'1':['T7']},
+              '51':{'1':['P2'],'2':['P2']},
+              '54':{'1':['P2'],'2':['P2','T7']},
+              '56':{'1':['P2','T7'],'2':['P2','TP7']},
+              '57':{'1':['P2'],'2':['P2']},
+              '58':{'1':['P2','T8'],'2':['PO4']},
+              '59':{'1':['P2','PO4','FC4']},
+              '60':{'1':['P2'],'2':['P2']},
+              '61':{'1':['P2']},
+              '62':{'2':['TP8']},
+              '63':{'2':['PO8']},
+              '68':{'1':['P2'],'2':['P2']},
+              '64':{'1':['C1']},
+              '70':{'1':['PO4','O2','FC3','FC5'],'2':['PO4','O2']},
+              '71':{'1':['P2','Iz'],'2':['P2','Iz','C1','Cz']},
+              '73':{'2':['FCz']},
+              '79':{'1':['P2','POz'],'2':['P2','POz','T7']},
+              '81':{'1':['Iz','Oz','Pz','CPz','PO4','P2','POz'],'2':['P2','PO4','FC1','C1','Pz']},
+              '78':{'1':['P2'],'2':['P2']},
+              '82':{'1':['P2']},
+              '83':{'1':['T7'],'2':['T7']},
+              '87':{'2':['P2']},
+              '65':{'1':['P2'],'2':['P2']},
+              '90':{'1':['T7','P2'],'2':['P2']},
+              '91':{'1':['P2'],'2':['P2']},
+              '93':{'1':['PO4'],'2':['PO4']},
+              '95':{'1':['P2'],'2':['P2']}
              }
 # example: bad_channel = {'94':{'FA1':['FP1','FP2'],{'VD1':['Cz']}} excluded for ICA analysis
 
@@ -143,6 +183,8 @@ for subj in subj_list:
                 
             else:
                 raw = mne.io.read_raw_eeglab(raw_fname,montage_biosemi,verbose='INFO',preload=True,eog='auto')
+                if raw.info['sfreq'] != 512:
+                    raw.resample(sfreq=512, npad = 'auto')
                 events = mne.events_from_annotations(raw)
                 if subj == '36' and session == '2' and state == 'VD':
                     raw.crop(tmin=220)
@@ -219,7 +261,7 @@ for subj in subj_list:
             rawVEOG= rawCalibAsr.copy()
             rawVEOG = rawVEOG.pick_channels(['VEOG'])
             VEOG_data = np.squeeze(rawVEOG.get_data())
-            peak_locs, peak_eeg = mne.preprocessing.peak_finder(VEOG_data, thresh = 110e-6)
+            peak_locs, peak_eeg = mne.preprocessing.peak_finder(VEOG_data, thresh = 125e-6)
             lengthblink = 0.5*rawCalibAsr.info['sfreq']
             startremoveblink = peak_locs-(lengthblink/2)
             stopremoveblink = peak_locs+(lengthblink/2)
