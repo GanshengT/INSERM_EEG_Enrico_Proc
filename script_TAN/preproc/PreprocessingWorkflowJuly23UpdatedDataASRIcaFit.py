@@ -122,7 +122,7 @@ for session in session_list:
     if epochs_ASR_clean == False:
         continue
     else:
-        ica = mne.preprocessing.ICA(n_components=pca_n_comp, method='fastica', random_state=11, max_iter=100)
+        ica = mne.preprocessing.ICA(n_components=pca_n_comp, method='fastica', random_state=11, max_iter=150)
         ica.fit(epochs_ASR_clean,decim=decim)
         preProc_ica_fname = preProc_ica_path+'subj0'+subj+'session'+session+'preProc_ica.fif'
         ica.save(preProc_ica_fname)
