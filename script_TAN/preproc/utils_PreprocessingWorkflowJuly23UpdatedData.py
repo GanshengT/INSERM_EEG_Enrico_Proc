@@ -18,18 +18,31 @@ import os
 import mne
 from utils_ASR import *
 
+<<<<<<< HEAD
 
 def get_epochs_ASR_clean(subj,session):
 
     ##################### OS path in INSERM computer #####################################################################
     raw_data_path = '/home/gansheng.tan/process_mne/INSERM_EEG_Enrico_Proc/data_eeglab/raw_data/'
     montage_fname = '/home/gansheng.tan/process_mne/INSERM_EEG_Enrico_Proc/data_eeglab/raw_data/Biosemi64_MAS_EOG.locs'
+=======
+def get_epochs_ASR_clean(subj,session):
+
+    ##################### OS path in INSERM computer #####################################################################
+#     raw_data_path = '/home/gansheng.tan/process_mne/INSERM_EEG_Enrico_Proc/data_eeglab/raw_data/'
+#     montage_fname = '/home/gansheng.tan/process_mne/INSERM_EEG_Enrico_Proc/data_eeglab/raw_data/Biosemi64_MAS_EOG.locs'
+>>>>>>> 7d5e7154242b95c4072aefc73cf20394ce2e22a0
     # # report_path = '/home/gansheng.tan/process_mne/INSERM_EEG_Enrico_Proc/report/'
     # full_epochs_path = '/home/gansheng.tan/process_mne/INSERM_EEG_Enrico_Proc/data_eeglab/full_epochs_data/'
     #
     ##################### OS path in cluster ######################################################################
+<<<<<<< HEAD
 #    raw_data_path = '/mnt/data/gansheng/raw_data/'
 #    montage_fname = '/mnt/data/gansheng/raw_data/Biosemi64_MAS_EOG.locs'
+=======
+    raw_data_path = '/mnt/data/gansheng/raw_data/'
+    montage_fname = '/mnt/data/gansheng/raw_data/Biosemi64_MAS_EOG.locs'
+>>>>>>> 7d5e7154242b95c4072aefc73cf20394ce2e22a0
 #     preProc_ica_path = '/home/gansheng.tan/process_mne/INSERM_EEG_Enrico_Proc/data_eeglab/preProc_ica/'
 #     report_path = '/home/gansheng.tan/process_mne/INSERM_EEG_Enrico_Proc/report/'
     # full_epochs_path = '/mnt/data/gansheng/preClean_data/'
@@ -40,6 +53,7 @@ def get_epochs_ASR_clean(subj,session):
     ########################################## Initialization parameter##########################################
     state_list = ['VD','FA','OP']
     power_freq_array = [50]
+<<<<<<< HEAD
     reject_raw_data_session1 = {'74':['FA','OP','VD'],'62':['FA','OP','VD']}
     reject_raw_data_session2 = {'74':['FA','OP','VD'],'62':['FA','OP','VD']}
 
@@ -60,13 +74,37 @@ def get_epochs_ASR_clean(subj,session):
                   '26':{'1':['T8'],'2':['CPz']},
                   '28':{'2':['CP2','PO7','Oz','POz']},
                   '29':{'1':['F3','F5','F7','AF8','F4','F6','F8'],'2':['F6','T7','F3','F5','F7','AF8','F8']},
+=======
+    reject_raw_data_session1 = {'29':['VD','FA','OP'],'30':['FA'],'36':['OP'],'74':['FA','OP','VD']}
+    reject_raw_data_session2 = {'74':['FA','OP','VD'],'55':['VD']}
+
+    # bad channel rejection is not apllied in the preproc, bad channels will be defined by eyes later
+    #62,74 IS SO SPECIAL, MISS 75 76 77
+    bad_channels={'02':{'1':['P2']},
+                  '04':{'2':['FC6']},
+                  '07':{'1':['Iz'],'2':['F8','T7']},
+                  '10':{'2':['F2']},
+                  '12':{'1':['P2']},
+                  '14':{'1':['P2'],'2':['P2']},
+                  '19':{'1':['P2','T7'],'2':['P2']},
+                  '21':{'2':['Iz']},
+                  '22':{'1':['T7','TP7','Iz','P1','POz','Pz'],'2':['T7','TP7','Iz']},
+                  '25':{'1':['T8','FP1'],'2':['FC1','C3','PO4','F2','Pz']},
+                  '26':{'1':['T8'],'2':['CPz']},
+                  '28':{'2':['CP2','PO7','Oz','POz']},
+                  '29':{'2':['F6']},
+>>>>>>> 7d5e7154242b95c4072aefc73cf20394ce2e22a0
                   '32':{'1':['P2'],'2':['P2','TP7']},
                   '34':{'1':['P2'],'2':['P2']},
                   '35':{'1':['T7','T8'],'2':['T8','PO8']},
                   '36':{'1':['P2','PO4'],'2':['P2','PO4']},
                   '37':{'1':['Iz']},
                   '38':{'2':['C5','FC5','TP8']},
+<<<<<<< HEAD
                   '39':{'1':['P2','F8','AF8','Fp1','AF7'],'2':['P2','FT8','AF8','T8','P10']},
+=======
+                  '39':{'1':['P2'],'2':['P2','FT8']},
+>>>>>>> 7d5e7154242b95c4072aefc73cf20394ce2e22a0
                   '40':{'1':['P2','TP7'],'2':['P2','TP7']},
                   '42':{'1':['P2'],'2':['P2']},
                   '50':{'1':['T7']},
@@ -79,6 +117,10 @@ def get_epochs_ASR_clean(subj,session):
                   '58':{'1':['P2','T8'],'2':['PO4']},
                   '59':{'1':['P2','PO4']},
                   '60':{'1':['P2'],'2':['P2']},
+<<<<<<< HEAD
+=======
+                  '61':{'1':['P2']},
+>>>>>>> 7d5e7154242b95c4072aefc73cf20394ce2e22a0
                   '63':{'2':['PO8']},
                   '64':{'1':['C1']},
                   '65':{'1':['P2'],'2':['P2']},
@@ -87,11 +129,16 @@ def get_epochs_ASR_clean(subj,session):
                   '70':{'1':['PO4','O2','FC3','FC5','F4','F6'],'2':['PO4','O2','FC5','FC3']},
                   '71':{'1':['P2','Iz'],'2':['P2','Iz','C1','Cz']},
                   '73':{'2':['FCz','FT8']},
+<<<<<<< HEAD
                 #'75':{'1':['C6','P2','FT8','AF8','CP1','P9','PO4','O2']},
                   '76':{'2':['T7']},
                   '77':{'1':['F6'],'2':['O1','Oz','F6','O2']},
                   '78':{'1':['P2'],'2':['P2']},
                   '79':{'1':['P2','POz'],'2':['P2','POz','T7','Fp1','AF7']},
+=======
+                  '78':{'1':['P2'],'2':['P2']},
+                  '79':{'1':['P2','POz'],'2':['P2','POz','T7']},
+>>>>>>> 7d5e7154242b95c4072aefc73cf20394ce2e22a0
                   '81':{'1':['Iz','Oz','Pz','CPz','PO4','P2','POz'],'2':['Iz','Oz','POz','CPz','P2','PO4','FC1','C1','Pz']},
                   '82':{'1':['P2'],'2':['AFz']},
                   '83':{'1':['T7'],'2':['T7']},
@@ -99,8 +146,12 @@ def get_epochs_ASR_clean(subj,session):
                   '88':{'1':['FC2','T8'],'1':['F4','P8','CP4']},
                   '90':{'1':['T7','P2'],'2':['P2']},
                   '91':{'1':['P2'],'2':['P2']},
+<<<<<<< HEAD
                   '93':{'1':['FC5','Fp1','F3','PO4'],'2':['Fp1','F3','FC3','PO4']},
                   '94':{'1':['Fp1','F6','AF8','Fp2','T7','T8'],'2':['Fp1','F6','AF8','Fp2','T7']},
+=======
+                  '93':{'1':['PO4'],'2':['PO4']},
+>>>>>>> 7d5e7154242b95c4072aefc73cf20394ce2e22a0
                   '95':{'1':['P2'],'2':['P2']}
                  }
     reject_state = []
@@ -133,6 +184,7 @@ def get_epochs_ASR_clean(subj,session):
 
             events_coding=events[1]
             events=np.asarray(events[0])  
+<<<<<<< HEAD
             if '254' not in events_coding.keys():
                 raw.annotations.append(onset=0,duration=0,description='254')
                 events = mne.events_from_annotations(raw)
@@ -140,13 +192,28 @@ def get_epochs_ASR_clean(subj,session):
                 events=np.asarray(events[0])  
             if '255' not in events_coding.keys():
                 raw.annotations.append(onset=events[-1][0]/512,duration=0,description='255')
+=======
+            if '254.0' not in events_coding.keys():
+                raw.annotations.append(onset=0,duration=0,description='254.0')
+                events = mne.events_from_annotations(raw)
+                events_coding=events[1]
+                events=np.asarray(events[0])  
+            if '255.0' not in events_coding.keys():
+                raw.annotations.append(onset=events[-1][0]/512,duration=0,description='255.0')
+>>>>>>> 7d5e7154242b95c4072aefc73cf20394ce2e22a0
                 events = mne.events_from_annotations(raw)
                 events_coding=events[1]
                 events=np.asarray(events[0])  
 
+<<<<<<< HEAD
             events_code_start = events_coding['254']
             start = events[events[:,2]==events_code_start][0][0]
             events_code_end = events_coding['255']
+=======
+            events_code_start = events_coding['254.0']
+            start = events[events[:,2]==events_code_start][0][0]
+            events_code_end = events_coding['255.0']
+>>>>>>> 7d5e7154242b95c4072aefc73cf20394ce2e22a0
             stop = events[events[:,2]==events_code_end][0][0]
 
             raw_cut_filt = raw.copy()
@@ -159,7 +226,11 @@ def get_epochs_ASR_clean(subj,session):
             ############ annotation engineering ################
             index_dlt=0
             for i in range(raw_cut_filt.annotations.__len__()):
+<<<<<<< HEAD
                 if (raw_cut_filt.annotations.__getitem__(i-index_dlt)['description']) not in ['131','132','255']:
+=======
+                if (raw_cut_filt.annotations.__getitem__(i-index_dlt)['description']) not in ['131.0','132.0','255.0']:
+>>>>>>> 7d5e7154242b95c4072aefc73cf20394ce2e22a0
                     raw_cut_filt.annotations.delete(i-index_dlt)
                     index_dlt+=1                       
                 else: 
@@ -202,7 +273,11 @@ def get_epochs_ASR_clean(subj,session):
         rawVEOG= rawCalibAsr.copy()
         rawVEOG = rawVEOG.pick_channels(['VEOG'])
         VEOG_data = np.squeeze(rawVEOG.get_data())
+<<<<<<< HEAD
         peak_locs, peak_eeg = mne.preprocessing.peak_finder(VEOG_data, thresh = 160e-6)
+=======
+        peak_locs, peak_eeg = mne.preprocessing.peak_finder(VEOG_data, thresh = 100e-6)
+>>>>>>> 7d5e7154242b95c4072aefc73cf20394ce2e22a0
         lengthblink = 0.5*rawCalibAsr.info['sfreq']
         startremoveblink = peak_locs-(lengthblink/2)
         stopremoveblink = peak_locs+(lengthblink/2)
@@ -252,7 +327,11 @@ def get_epochs_ASR_clean(subj,session):
             else:
                 i+=1
         events_dict=events[1]
+<<<<<<< HEAD
         events_dict=removeItem_from_dict(events_dict,'255')
+=======
+        events_dict=removeItem_from_dict(events_dict,'255.0')
+>>>>>>> 7d5e7154242b95c4072aefc73cf20394ce2e22a0
 
         sfreq=raw_full.info['sfreq']   
         i=0
@@ -301,8 +380,11 @@ def get_epochs_ASR_clean(subj,session):
             epochs_ASR_clean.interpolate_bads()
         return epochs_ASR_clean, psd_figs, psd_captions, ASR_figs, ASR_captions
 
+<<<<<<< HEAD
     
 
+=======
+>>>>>>> 7d5e7154242b95c4072aefc73cf20394ce2e22a0
 
 def autorej_rate(epochs_autorejected):
     epoch_num = 0
@@ -361,7 +443,11 @@ def mne_annotation_recode_by_adding(session,state,annotations):
     duration = []
     description = []
     for i in range(annotations.__len__()):
+<<<<<<< HEAD
         if annotations.__getitem__(i)['description'] in ['131','132']:
+=======
+        if annotations.__getitem__(i)['description'] in ['131.0','132.0']:
+>>>>>>> 7d5e7154242b95c4072aefc73cf20394ce2e22a0
             onset,duration,description = mne_annotation_recode_info_extract(session=session,state=state,
                                                                         original_annotation = 
                                                                         annotations.__getitem__(i),
@@ -371,7 +457,11 @@ def mne_annotation_recode_by_adding(session,state,annotations):
             continue
     index_dlt = 0
     for i in range(annotations.__len__()):
+<<<<<<< HEAD
         if annotations.__getitem__(i-index_dlt)['description'] in ['131','132']:
+=======
+        if annotations.__getitem__(i-index_dlt)['description'] in ['131.0','132.0']:
+>>>>>>> 7d5e7154242b95c4072aefc73cf20394ce2e22a0
             annotations.delete(i-index_dlt)
             index_dlt+=1
         else:
@@ -410,35 +500,59 @@ def mne_annotation_add_baseline(session,state):
 def mne_annotation_recode_info_extract(session,state,original_annotation,onset,duration,description):
     if session =='1':
         if state == 'VD':
+<<<<<<< HEAD
             if original_annotation['description']=='131':
+=======
+            if original_annotation['description']=='131.0':
+>>>>>>> 7d5e7154242b95c4072aefc73cf20394ce2e22a0
                 onset.append(original_annotation['onset'])
                 duration.append(original_annotation['duration'])
                 description.append('121.0')
                 
+<<<<<<< HEAD
             elif original_annotation['description']=='132':
+=======
+            elif original_annotation['description']=='132.0':
+>>>>>>> 7d5e7154242b95c4072aefc73cf20394ce2e22a0
                 onset.append(original_annotation['onset'])
                 duration.append(original_annotation['duration'])
                 description.append('131.0')
             else:
                 print('this function only detect safe and threat period, please check original annotations')
         elif state == 'FA':
+<<<<<<< HEAD
             if original_annotation['description']=='131':
+=======
+            if original_annotation['description']=='131.0':
+>>>>>>> 7d5e7154242b95c4072aefc73cf20394ce2e22a0
                 onset.append(original_annotation['onset'])
                 duration.append(original_annotation['duration'])
                 description.append('221.0')
 
+<<<<<<< HEAD
             elif original_annotation['description']=='132':
+=======
+            elif original_annotation['description']=='132.0':
+>>>>>>> 7d5e7154242b95c4072aefc73cf20394ce2e22a0
                 onset.append(original_annotation['onset'])
                 duration.append(original_annotation['duration'])
                 description.append('231.0')
             else:
                 print('this function only detect safe and threat period, please check original annotations')
         elif state == 'OP':
+<<<<<<< HEAD
             if original_annotation['description']=='131':
                 onset.append(original_annotation['onset'])
                 duration.append(original_annotation['duration'])
                 description.append('321.0')
             elif original_annotation['description']=='132':
+=======
+            if original_annotation['description']=='131.0':
+                onset.append(original_annotation['onset'])
+                duration.append(original_annotation['duration'])
+                description.append('321.0')
+            elif original_annotation['description']=='132.0':
+>>>>>>> 7d5e7154242b95c4072aefc73cf20394ce2e22a0
                 onset.append(original_annotation['onset'])
                 duration.append(original_annotation['duration'])
                 description.append('331.0')
@@ -446,33 +560,57 @@ def mne_annotation_recode_info_extract(session,state,original_annotation,onset,d
                 print('this function only detect VD, FA, OP states, please check original annotations')
     elif session =='2':
         if state == 'VD':
+<<<<<<< HEAD
             if original_annotation['description']=='131':
                 onset.append(original_annotation['onset'])
                 duration.append(original_annotation['duration'])
                 description.append('122.0')
             elif original_annotation['description']=='132':
+=======
+            if original_annotation['description']=='131.0':
+                onset.append(original_annotation['onset'])
+                duration.append(original_annotation['duration'])
+                description.append('122.0')
+            elif original_annotation['description']=='132.0':
+>>>>>>> 7d5e7154242b95c4072aefc73cf20394ce2e22a0
                 onset.append(original_annotation['onset'])
                 duration.append(original_annotation['duration'])
                 description.append('132.0')
             else:
                 print('this function only detect safe and threat period, please check original annotations')
         elif state == 'FA':
+<<<<<<< HEAD
             if original_annotation['description']=='131':
                 onset.append(original_annotation['onset'])
                 duration.append(original_annotation['duration'])
                 description.append('222.0')
             elif original_annotation['description']=='132':
+=======
+            if original_annotation['description']=='131.0':
+                onset.append(original_annotation['onset'])
+                duration.append(original_annotation['duration'])
+                description.append('222.0')
+            elif original_annotation['description']=='132.0':
+>>>>>>> 7d5e7154242b95c4072aefc73cf20394ce2e22a0
                 onset.append(original_annotation['onset'])
                 duration.append(original_annotation['duration'])
                 description.append('232.0')
             else:
                 print('this function only detect safe and threat period, please check original annotations')
         elif state == 'OP':
+<<<<<<< HEAD
             if original_annotation['description']=='131':
                 onset.append(original_annotation['onset'])
                 duration.append(original_annotation['duration'])
                 description.append('322.0')
             elif original_annotation['description']=='132':
+=======
+            if original_annotation['description']=='131.0':
+                onset.append(original_annotation['onset'])
+                duration.append(original_annotation['duration'])
+                description.append('322.0')
+            elif original_annotation['description']=='132.0':
+>>>>>>> 7d5e7154242b95c4072aefc73cf20394ce2e22a0
                 onset.append(original_annotation['onset'])
                 duration.append(original_annotation['duration'])
                 description.append('332.0')
