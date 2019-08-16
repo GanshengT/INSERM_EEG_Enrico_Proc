@@ -8,25 +8,20 @@ Building the framework
 
 Spectral Analysis and preprocessing of EEG signals
 ======================
-Different from the classical EEG signals analysis, we provide a convenient wrapper of [mne](https://martinos.org/mne/stable/index.html)functions to do the semi-automatic preprocessing and spectral analysis. The examples and scripts are correspond to this [specific experiment design](https://www.researchgate.net/publication/326542100_Differential_effects_of_non-dual_and_focused_attention_meditations_on_the_formation_of_automatic_perceptual_habits_in_expert_practitioners).
-This repository includes
+Different from the classical EEG signals analysis, we provide a convenient wrapper of [mne](https://martinos.org/mne/stable/index.html) functions to do the semi-automatic preprocessing and spectral analysis. The examples and scripts are correspond to this [specific experiment design](https://www.researchgate.net/publication/326542100_Differential_effects_of_non-dual_and_focused_attention_meditations_on_the_formation_of_automatic_perceptual_habits_in_expert_practitioners).
 
-[Aimeos](https://aimeos.org/TYPO3) is THE professional, full-featured and
-high performance e-commerce extension for TYPO3!  You can install it in your
-existing TYPO3 web site within 5 minutes and can adapt, extend, overwrite
-and customize anything to your needs.
 
 [![Aimeos TYPO3 demo](https://aimeos.org/fileadmin/user_upload/typo3-demo.jpg)](http://typo3.demo.aimeos.org/)
 
 ## Table of content
 
-- [Installation](#installation)
-    - [TER](#typo3-extension-repository)
-    - [Composer](#composer)
-- [TYPO3 setup](#typo3-setup)
+- [Workflow](#installation)
+    - [Preprocessing](#typo3-extension-repository)
+    - [Statistical analysis](#composer)
+- [Prerequest](#typo3-setup)
     - [Extension](#extension)
     - [Database](#database)
-- [Page setup](#page-setup)
+- [Scripts explanation and examples](#page-setup)
     - [Upload the page tree file](#upload-the-page-tree-file)
     - [Go to the import view](#go-to-the-import-view)
     - [Import the uploaded page tree file](#import-the-uploaded-page-tree-file)
