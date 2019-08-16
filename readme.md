@@ -3,10 +3,10 @@ Readme file is under construction
 
 Building the framework
 <a href="https://www.inserm.fr/">
-    <img src="https://upload.wikimedia.org/wikipedia/fr/c/cd/Inserm.svg" alt="Aimeos logo" title="Aimeos" align="right" height="60" />
+    <img src="https://upload.wikimedia.org/wikipedia/fr/c/cd/Inserm.svg" alt="INSERM logo" title="INSERM" align="right" height="60" />
 </a>
 
-Aimeos TYPO3 extension
+Spectral Analysis and preprocessing of EEG signals
 ======================
 [![Total Downloads](https://poser.pugx.org/aimeos/aimeos-typo3/d/total.svg)](https://packagist.org/packages/aimeos/aimeos-typo3)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/aimeos/aimeos-typo3/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/aimeos/aimeos-typo3/?branch=master)
