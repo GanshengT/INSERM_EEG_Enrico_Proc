@@ -8,11 +8,8 @@ Building the framework
 
 Spectral Analysis and preprocessing of EEG signals
 ======================
-[![Total Downloads](https://poser.pugx.org/aimeos/aimeos-typo3/d/total.svg)](https://packagist.org/packages/aimeos/aimeos-typo3)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/aimeos/aimeos-typo3/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/aimeos/aimeos-typo3/?branch=master)
-[![License](https://poser.pugx.org/aimeos/aimeos-typo3/license.svg)](https://packagist.org/packages/aimeos/aimeos-typo3)
-
-:star: Star us on GitHub — it helps!
+Different from the classical EEG signals analysis, we provide a convenient wrapper of [mne](https://martinos.org/mne/stable/index.html)functions to do the semi-automatic preprocessing and spectral analysis. The examples and scripts are correspond to this [specific experiment design](https://www.researchgate.net/publication/326542100_Differential_effects_of_non-dual_and_focused_attention_meditations_on_the_formation_of_automatic_perceptual_habits_in_expert_practitioners).
+This repository includes
 
 [Aimeos](https://aimeos.org/TYPO3) is THE professional, full-featured and
 high performance e-commerce extension for TYPO3!  You can install it in your
