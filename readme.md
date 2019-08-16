@@ -2,8 +2,8 @@ This is the repository for processing EEG data using MNE python package <br>
 Readme file is under construction
 
 Building the framework
-<a href="https://aimeos.org/">
-    <img src="https://aimeos.org/fileadmin/template/icons/logo.png" alt="Aimeos logo" title="Aimeos" align="right" height="60" />
+<a href="https://www.inserm.fr/">
+    <img src="https://upload.wikimedia.org/wikipedia/fr/c/cd/Inserm.svg" alt="Aimeos logo" title="Aimeos" align="right" height="60" />
 </a>
 
 Aimeos TYPO3 extension
