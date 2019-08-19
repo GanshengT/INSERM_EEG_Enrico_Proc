@@ -37,7 +37,7 @@ Language we used for programming is python, MNE-Python is the essential tool to 
 To perform mathematical easily, we use numpy and scipy
 
 ### Database
-The database are the EEG recording files using eeglab format. Each file stands for one state, three in total. (Please refer to the experiment design). Additionally, each subject performs two sessions, thus, each subjects has 6 raw-data files.
+The database are the EEG recording files using eeglab format. Each file stands for one state, three in total. (Please refer to the experiment design). Additionally, each subject performs two sessions, thus, each subjects has 6 raw-data files. The recording contains 64 EEG channels and 2 EOG channels (VEOG and HEOG)
 
 
 ## Workflow
@@ -54,7 +54,10 @@ ration in the following steps, bad eletrodes will be interpolated after preproce
         2. condition: 1:baseline 2:safe 3:threat  
         3. session: 1:session1 2:session2  
     At the end, we concatenate three recording files for one sessions into one epoching file.
-* ASR - [artifact subspace reconstruction](https://www.ncbi.nlm.nih.gov/pubmed/30440615)
+* ASR - [artifact subspace reconstruction](https://www.ncbi.nlm.nih.gov/pubmed/30440615)  
+    * selecting baseline signal, use yule walker to amplify artifact components
+    * cut blinks based on VEOG channel
+
        
 
 
