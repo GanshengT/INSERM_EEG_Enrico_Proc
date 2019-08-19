@@ -13,12 +13,14 @@ As both sample sizes and EEG channel densities increase, traditional processing 
 
 ## Table of content
 
+- [Prerequest](#prerequest)
+    - [Environment](#environment)
+    - [Database](#database)
+
 - [Workflow](#workflow)
     - [Preprocessing](#typo3-extension-repository)
     - [Statistical analysis](#composer)
-- [Prerequest](#typo3-setup)
-    - [Environment](#extension)
-    - [Database](#database)
+
 - [Scripts explanation and examples](#page-setup)
     - [Upload the page tree file](#upload-the-page-tree-file)
     - [Go to the import view](#go-to-the-import-view)
@@ -28,19 +30,32 @@ As both sample sizes and EEG channel densities increase, traditional processing 
 - [License](#license)
 - [Extentions](#links)
 
+## Prerequest
+### Environment
+Language we used for programming is python, MNE-Python is the essential tool to preprocess the data and perform sensor-level analysis.  
+[How to install mne]  
+To perform mathematical easily, we use numpy and scipy
+
+### Database
+The database are the EEG recording files using eeglab format. Each file stands for one state, three in total. (Please refer to the experiment design). Additionally, each subject performs two sessions, thus, each subjects has 6 raw-data files.
+
+
 ## Workflow
 The workflow consists of two parts. 
 ### Preprocessing
 Electroenchephalography (EEG) recordings have a high degree of artifact contamination, so the first part is artifact rejection which includes following steps:
 * visual inspection: This steps helps to define the bad electrodes and do not take them into conside
 ration in the following steps, bad eletrodes will be interpolated after preprocessing.
-* filter - 1-100Hz passband filter and 50 Hz notch filter (France) *Notice: this happens after extracting signal in practice but it might have edge effet*
+* filter - 1-100Hz passband filter and 50 Hz notch filter (France) *Notice: this happens after extracting signal in practice but it might have edge effet, for practical purpose, we fix sampling rate as 512 for all the recording files*
 * signal extraction and annotation engineering:</br>
  The raw data is cut from event 254 to event 255, then we recode the events as follows:  
     * events code: state + condition + session:
         1. state: 1:VD 2:FA 3:OP  
         2. condition: 1:baseline 2:safe 3:threat  
         3. session: 1:session1 2:session2  
+    At the end, we concatenate three recording files for one sessions into one epoching file.
+* ASR - [artifact subspace reconstruction](https://www.ncbi.nlm.nih.gov/pubmed/30440615)
+       
 
 
 
