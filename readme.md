@@ -33,6 +33,10 @@ As both sample sizes and EEG channel densities increase, traditional processing 
 The workflow consists of two parts. 
 ### Preprocessing
 Electroenchephalography (EEG) recordings have a high degree of artifact contamination, so the first part is artifact rejection which includes following steps:
+* filter - 1-100Hz passband filter and 50 Hz notch filter (France) *Notice: this happens after extracting signal in practice but it might have edge effet*
+* signal extraction and annotation engineering:</br>
+
+
 
 
 
