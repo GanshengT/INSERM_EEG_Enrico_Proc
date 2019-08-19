@@ -1,7 +1,6 @@
 This is the repository for processing EEG data using MNE python package <br>
 Readme file is under construction
 
-Building the framework
 <a href="https://www.inserm.fr/">
     <img src="https://upload.wikimedia.org/wikipedia/fr/c/cd/Inserm.svg" alt="INSERM logo" title="INSERM" align="right" height="60" />
 </a>
@@ -33,8 +32,15 @@ As both sample sizes and EEG channel densities increase, traditional processing 
 The workflow consists of two parts. 
 ### Preprocessing
 Electroenchephalography (EEG) recordings have a high degree of artifact contamination, so the first part is artifact rejection which includes following steps:
+* visual inspection: This steps helps to define the bad electrodes and do not take them into conside
+ration in the following steps, bad eletrodes will be interpolated after preprocessing.
 * filter - 1-100Hz passband filter and 50 Hz notch filter (France) *Notice: this happens after extracting signal in practice but it might have edge effet*
 * signal extraction and annotation engineering:</br>
+ The raw data is cut from event 254 to event 255, then we recode the events as follows:
+    *events code: state + condition + session:
+        1. state: 1:VD 2:FA 3:OP\n",
+        2. condition: 1:baseline 2:safe 3:threat\n",
+        3. session: 1:session1 2:session2\n",
 
 
 
@@ -56,9 +62,9 @@ The scripts are open-source but intended to be modified by the member of Dycog T
 ## Extentions
 
 * [Compared to HAPPE](https://www.frontiersin.org/articles/10.3389/fnins.2018.00097/full)
-* [Source code](https://github.com/aimeos/aimeos-typo3)
+* [automatic ICA components rejection](https://www.ncbi.nlm.nih.gov/pubmed/21810266)
 
 ## Acknowledgments
 
-* Manu Françoise
-* Antoine's critical view
+* Advice given by Manu MABY and Françoise LECAIGNARD has been a great help in
+* I am particularly grateful for the assistance given Arnaud Poublan-couzardot and the comments by Antoine LUTZ
