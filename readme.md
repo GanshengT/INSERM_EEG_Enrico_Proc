@@ -36,11 +36,11 @@ Electroenchephalography (EEG) recordings have a high degree of artifact contamin
 ration in the following steps, bad eletrodes will be interpolated after preprocessing.
 * filter - 1-100Hz passband filter and 50 Hz notch filter (France) *Notice: this happens after extracting signal in practice but it might have edge effet*
 * signal extraction and annotation engineering:</br>
- The raw data is cut from event 254 to event 255, then we recode the events as follows:
-    *events code: state + condition + session:
-        1. state: 1:VD 2:FA 3:OP\n",
-        2. condition: 1:baseline 2:safe 3:threat\n",
-        3. session: 1:session1 2:session2\n",
+ The raw data is cut from event 254 to event 255, then we recode the events as follows:  
+    * events code: state + condition + session:
+        1. state: 1:VD 2:FA 3:OP  
+        2. condition: 1:baseline 2:safe 3:threat  
+        3. session: 1:session1 2:session2  
 
 
 
