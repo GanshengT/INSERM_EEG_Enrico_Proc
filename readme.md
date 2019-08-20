@@ -18,7 +18,7 @@ As both sample sizes and EEG channel densities increase, traditional processing 
     - [Database](#database)
 
 - [Workflow](#workflow)
-    - [Preprocessing](#typo3-extension-repository)
+    - [Preprocessing](#preprocesing)
     - [Statistical analysis](#composer)
 
 - [Scripts explanation and examples](#page-setup)
@@ -53,18 +53,28 @@ ration in the following steps, bad eletrodes will be interpolated after preproce
         1. state: 1:VD 2:FA 3:OP  
         2. condition: 1:baseline 2:safe 3:threat  
         3. session: 1:session1 2:session2  
-    At the end, we concatenate three recording files for one sessions into one epoching file.
+    At the end, we concatenate three recording files for one sessions into one epoching file that we call *full_epochs*.
 * ASR - [artifact subspace reconstruction](https://www.ncbi.nlm.nih.gov/pubmed/30440615)  
-    * selecting baseline signal, use yule walker to amplify artifact components
-    * cut blinks based on VEOG channel
+    * selecting baseline signal and using yule walker to amplify artifact components
+    * cut blinks based on VEOG channel and remove periods with abnormally high-power content from continuous data
+    * calculate the rejecting threshold based on cleaned baseline signal (please refer tp ASR documentation)
+    * apply yule walker on *full_epochs* to get *epochs4detect*, reconstruct *full_epochs* window by window with respect to the correlation between *epochs4detect* and *full_epochs*.
+    
+* *full_epochs* concatenation and apply ICA on *full_epochs* to exclude the residus of artifact components (especially blinks and saccades that are not focus by ASR because the yule walker that we used aims to amplify high-frequency artifacts)
 
-       
-
-
-
+* Visually exclude ICA components and run [Autoreject](https://autoreject.github.io/index.html) with local threshold initially, while the rejecting rate is higher than 10%, we choose a more tolerant global threshold. The datas after above procedures are called *precleaned_epochs*, one for each subject.  
 
 
 ### Statistical analysis
+As for the statistical analysis, afk processing, we use R language to fit mix-effeted model to perform tests which includes:**to be verified by Arnaud**
+* extract psd and band power from *precleaned_epochs*. ->panda dataframe or csv
+* visualize data distribution and normalise data and eliminate outliners
+* define variable and test the difference within groups, states etc, and the correlation between variables.
+* post-hoc tests  
+we use mne-python to perform spatio-clustering permutation test
+* information extraction:
+    * one matrix for paired test, two matrix for unpaired test.
+
 
 
 
