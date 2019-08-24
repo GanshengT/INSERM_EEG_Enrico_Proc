@@ -19,9 +19,9 @@ As both sample sizes and EEG channel densities increase, traditional processing 
 
 - [Workflow](#workflow)
     - [Preprocessing](#preprocesing)
-    - [Statistical analysis](#composer)
+    - [Statistical analysis](#statistical-analysis)
 
-- [Scripts explanation and examples](#scripts explanation and examples)
+- [Scripts-explanation-and-examples](#scripts-explanation-and-examples)
     - [ready-to-run](#ready-to-run)
     - [Go to the import view](#go-to-the-import-view)
     - [Import the uploaded page tree file](#import-the-uploaded-page-tree-file)
@@ -65,7 +65,7 @@ ration in the following steps, bad eletrodes will be interpolated after preproce
 * Visually exclude ICA components and run [Autoreject](https://autoreject.github.io/index.html) with local threshold initially, while the rejecting rate is higher than 10%, we choose a more tolerant global threshold. The datas after above procedures are called *precleaned_epochs*, one for each subject.  
 
 
-### Statistical analysis
+### Statistical-analysis
 As for the statistical analysis, afk processing, we use R language to fit mix-effeted model to perform tests which includes:**to be verified by Arnaud**
 * extract psd and band power from *precleaned_epochs*. ->panda dataframe or csv
 * visualize data distribution and normalise data and eliminate outliners
