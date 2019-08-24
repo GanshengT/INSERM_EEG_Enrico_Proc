@@ -24,7 +24,7 @@ As both sample sizes and EEG channel densities increase, traditional processing 
 - [Scripts-explanation-and-examples](#scripts-explanation-and-examples)
     - [ready-to-run](#ready-to-run)
         - [utils_preProcessingWorkflowJuly05.py](#utils_preProcessingWorkflowJuly05.py)
-    - [Go to the import view](#go-to-the-import-view)
+    - [utils](#go-to-the-import-view)
     - [Import the uploaded page tree file](#import-the-uploaded-page-tree-file)
 -[Troubleshooting]
 - [Authors](#authors)
@@ -91,7 +91,15 @@ This chapter explains most of the methods in folder script_tan, those not being 
             preProc_ica_path = 'path for storing ica mixing matrix in the format of .fif'
             report_path = 'your/path'
             ```
-
+            Likewise, you have to define bad channels to interpolate after the cleaning procedure and the recording file that are being contaminated.
+            ```python
+            reject_raw_data_session1 = {'29':['VD','FA','OP'],'30':['FA'],'36':['OP'],'74':['FA','OP','VD']}
+            reject_raw_data_session2 = {'74':['FA','OP','VD'],'55':['VD']}
+            bad_channels=
+            ```
+            * the other methods are used while modifing the file annotations.
+    #### utils_ASR.py
+    those function in this file are served as sub-methods to do ASR
 
 ## Authors
 * [**Gansheng Tan**](https://ganshengt.github.io/) - *Initial work* 
