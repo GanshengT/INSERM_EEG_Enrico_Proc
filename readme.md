@@ -23,6 +23,7 @@ As both sample sizes and EEG channel densities increase, traditional processing 
 
 - [Scripts-explanation-and-examples](#scripts-explanation-and-examples)
     - [ready-to-run](#ready-to-run)
+        -[methods .py in preprocessing](#methods-.py-in-preprocessing)
     - [Go to the import view](#go-to-the-import-view)
     - [Import the uploaded page tree file](#import-the-uploaded-page-tree-file)
 -[Troubleshooting]
@@ -75,7 +76,7 @@ we use mne-python to perform spatio-clustering permutation test
 * information extraction:
     * one matrix for paired test, two matrix for unpaired test.
 
-### Scripts explanation and examples
+### Scripts-explanation-and-examples
 This chapter explains most of the methods in folder script_tan, those not being described are in developpement version or of small importance.
 ## ready-to-run (in calculation machine)
 * methods .py in preprocessing
