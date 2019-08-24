@@ -24,6 +24,7 @@ As both sample sizes and EEG channel densities increase, traditional processing 
 - [Scripts-explanation-and-examples](#scripts-explanation-and-examples)
     - [ready-to-run](#ready-to-run)
         - [utils_preProcessingWorkflowJuly05.py](#utils_preProcessingWorkflowJuly05.py)
+        - [utils_ASR](#utils_ASR)
     - [utils](#go-to-the-import-view)
     - [Import the uploaded page tree file](#import-the-uploaded-page-tree-file)
 -[Troubleshooting]
@@ -99,7 +100,7 @@ This chapter explains most of the methods in folder script_tan, those not being 
             ```
             * the other methods are used while modifing the file annotations.
     #### utils_ASR.py
-    those function in this file are served as sub-methods to do ASR
+    those function in this file are served as sub-methods to do ASR. There are detailed explanation for each of these functions.
 
 ## Authors
 * [**Gansheng Tan**](https://ganshengt.github.io/) - *Initial work* 
