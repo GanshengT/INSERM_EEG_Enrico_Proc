@@ -23,7 +23,7 @@ As both sample sizes and EEG channel densities increase, traditional processing 
 
 - [Scripts-explanation-and-examples](#scripts-explanation-and-examples)
     - [ready-to-run](#ready-to-run)
-        -[utils_preProcessingWorkflowJuly05.py](#utils_preProcessingWorkflowJuly05.py)
+        - [utils_preProcessingWorkflowJuly05.py](#utils_preProcessingWorkflowJuly05.py)
     - [Go to the import view](#go-to-the-import-view)
     - [Import the uploaded page tree file](#import-the-uploaded-page-tree-file)
 -[Troubleshooting]
