@@ -21,8 +21,8 @@ As both sample sizes and EEG channel densities increase, traditional processing 
     - [Preprocessing](#preprocesing)
     - [Statistical analysis](#composer)
 
-- [Scripts explanation and examples](#page-setup)
-    - [Upload the page tree file](#upload-the-page-tree-file)
+- [Scripts explanation and examples](#scripts explanation and examples)
+    - [ready-to-run](#ready-to-run)
     - [Go to the import view](#go-to-the-import-view)
     - [Import the uploaded page tree file](#import-the-uploaded-page-tree-file)
 -[Troubleshooting]
@@ -32,7 +32,7 @@ As both sample sizes and EEG channel densities increase, traditional processing 
 
 ## Prerequest
 ### Environment
-Language we used for programming is python, MNE-Python is the essential tool to preprocess the data and perform sensor-level analysis.  
+Language we used for programming is python, python 3.5 or 3.6 is required, MNE-Python is the essential tool to preprocess the data and perform sensor-level analysis.  
 [How to install mne]  
 To perform mathematical easily, we use numpy and scipy
 
@@ -60,7 +60,7 @@ ration in the following steps, bad eletrodes will be interpolated after preproce
     * calculate the rejecting threshold based on cleaned baseline signal (please refer tp ASR documentation)
     * apply yule walker on *full_epochs* to get *epochs4detect*, reconstruct *full_epochs* window by window with respect to the correlation between *epochs4detect* and *full_epochs*.
     
-* *full_epochs* concatenation and apply ICA on *full_epochs* to exclude the residus of artifact components (especially blinks and saccades that are not focus by ASR because the yule walker that we used aims to amplify high-frequency artifacts)
+* *full_epochs* concatenation and apply [ICA](https://www.sciencedirect.com/science/article/pii/S0893608000000265) on *full_epochs* to exclude the residus of artifact components (especially blinks and saccades that are not focus by ASR because the yule walker that we used aims to amplify high-frequency artifacts)
 
 * Visually exclude ICA components and run [Autoreject](https://autoreject.github.io/index.html) with local threshold initially, while the rejecting rate is higher than 10%, we choose a more tolerant global threshold. The datas after above procedures are called *precleaned_epochs*, one for each subject.  
 
@@ -75,7 +75,20 @@ we use mne-python to perform spatio-clustering permutation test
 * information extraction:
     * one matrix for paired test, two matrix for unpaired test.
 
-
+### Scripts explanation and examples
+This chapter explains most of the methods in folder script_tan, those not being described are in developpement version or of small importance.
+## ready-to-run (in calculation machine)
+* methods .py in preprocessing
+    * utils_preProcessingWorkflowJuly05.py
+    this file consists of basic wrap-up function of mne-python
+        * *autorej_rate* takes epochs after autoreject as argument, and return the percentage of the epoch that have been rejected by autoreject.
+        * *get_epochs_ASR_clean* takes *subject id* and *session number* as arguments, and it returns cleaned epochs after artifact subspace reconstruction. To run this method, one has to well define:
+        ```python
+ raw_data_path = 'your/path'
+ montage_fname = 'your/path'
+ preProc_ica_path = 'path for storing ica mixing matrix in the format of .fif'
+ report_path = 'your/path'
+```
 
 
 ## Authors
