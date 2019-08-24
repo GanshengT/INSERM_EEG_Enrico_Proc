@@ -80,7 +80,7 @@ we use mne-python to perform spatio-clustering permutation test
 This chapter explains most of the methods in folder script_tan, those not being described are in developpement version or of small importance.
 ### ready-to-run (in calculation machine)
 * methods .py in preprocessing
-    #### * utils_preProcessingWorkflowJuly05.py
+    #### utils_preProcessingWorkflowJuly05.py
     this file consists of basic wrap-up function of mne-python
             * *autorej_rate* takes epochs after autoreject as argument, and return the percentage of the epoch that have been rejected by autoreject.
             * *get_epochs_ASR_clean* takes *subject id* and *session number* as arguments, and it returns cleaned epochs after artifact subspace reconstruction. To run this method, one has to well define:
