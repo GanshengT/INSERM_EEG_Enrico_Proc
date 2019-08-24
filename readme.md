@@ -23,7 +23,7 @@ As both sample sizes and EEG channel densities increase, traditional processing 
 
 - [Scripts-explanation-and-examples](#scripts-explanation-and-examples)
     - [ready-to-run](#ready-to-run)
-        -[methods .py in preprocessing](#methods-.py-in-preprocessing)
+        -[utils_preProcessingWorkflowJuly05.py](#utils_preProcessingWorkflowJuly05.py)
     - [Go to the import view](#go-to-the-import-view)
     - [Import the uploaded page tree file](#import-the-uploaded-page-tree-file)
 -[Troubleshooting]
@@ -76,21 +76,21 @@ we use mne-python to perform spatio-clustering permutation test
 * information extraction:
     * one matrix for paired test, two matrix for unpaired test.
 
-### Scripts-explanation-and-examples
+## Scripts-explanation-and-examples
 This chapter explains most of the methods in folder script_tan, those not being described are in developpement version or of small importance.
-## ready-to-run (in calculation machine)
+### ready-to-run (in calculation machine)
 * methods .py in preprocessing
-    * utils_preProcessingWorkflowJuly05.py
+    #### * utils_preProcessingWorkflowJuly05.py
     this file consists of basic wrap-up function of mne-python
-        * *autorej_rate* takes epochs after autoreject as argument, and return the percentage of the epoch that have been rejected by autoreject.
-        * *get_epochs_ASR_clean* takes *subject id* and *session number* as arguments, and it returns cleaned epochs after artifact subspace reconstruction. To run this method, one has to well define:
-        
-        ```python
-        raw_data_path = 'your/path'
-        montage_fname = 'your/path'
-        preProc_ica_path = 'path for storing ica mixing matrix in the format of .fif'
-        report_path = 'your/path'
-        ```
+            * *autorej_rate* takes epochs after autoreject as argument, and return the percentage of the epoch that have been rejected by autoreject.
+            * *get_epochs_ASR_clean* takes *subject id* and *session number* as arguments, and it returns cleaned epochs after artifact subspace reconstruction. To run this method, one has to well define:
+
+            ```python
+            raw_data_path = 'your/path'
+            montage_fname = 'your/path'
+            preProc_ica_path = 'path for storing ica mixing matrix in the format of .fif'
+            report_path = 'your/path'
+            ```
 
 
 ## Authors
