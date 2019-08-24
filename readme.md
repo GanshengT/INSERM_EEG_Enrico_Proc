@@ -83,12 +83,13 @@ This chapter explains most of the methods in folder script_tan, those not being 
     this file consists of basic wrap-up function of mne-python
         * *autorej_rate* takes epochs after autoreject as argument, and return the percentage of the epoch that have been rejected by autoreject.
         * *get_epochs_ASR_clean* takes *subject id* and *session number* as arguments, and it returns cleaned epochs after artifact subspace reconstruction. To run this method, one has to well define:
+        
         ```python
- raw_data_path = 'your/path'
- montage_fname = 'your/path'
- preProc_ica_path = 'path for storing ica mixing matrix in the format of .fif'
- report_path = 'your/path'
-```
+        raw_data_path = 'your/path'
+        montage_fname = 'your/path'
+        preProc_ica_path = 'path for storing ica mixing matrix in the format of .fif'
+        report_path = 'your/path'
+        ```
 
 
 ## Authors
@@ -104,6 +105,7 @@ The scripts are open-source but intended to be modified by the member of Dycog T
 
 * [Compared to HAPPE](https://www.frontiersin.org/articles/10.3389/fnins.2018.00097/full)
 * [automatic ICA components rejection](https://www.ncbi.nlm.nih.gov/pubmed/21810266)
+* [possible high performance method - deep ica approach](https://towardsdatascience.com/deep-independent-component-analysis-in-tensorflow-manual-back-prop-in-tf-94602a08b13f)
 
 ## Acknowledgments
 
