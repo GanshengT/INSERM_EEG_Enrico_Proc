@@ -27,10 +27,10 @@ As both sample sizes and EEG channel densities increase, traditional processing 
         - [utils_ASR](#utils_ASR)
         - [utils_PreprocessingWorkflowJuly23UpdatedData.py](#utils_PreprocessingWorkflowJuly23UpdatedData.py)
         
-    - [workflow scripts](#workflow script)
+    - [workflow scripts](#workflow scripts)
 
 
-- [Troubleshooting]
+- [Troubleshooting](#troubleshooting)
 - [Authors](#authors)
 - [License](#license)
 - [Extentions](#links)
