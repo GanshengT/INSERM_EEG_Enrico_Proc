@@ -26,7 +26,7 @@ As both sample sizes and EEG channel densities increase, traditional processing 
         - [utils_preProcessingWorkflowJuly05.py](#utils_preProcessingWorkflowJuly05.py)
         - [utils_ASR](#utils_ASR)
         - [utils_PreprocessingWorkflowJuly23UpdatedData.py](#utils_PreprocessingWorkflowJuly23UpdatedData.py)
-    - [To run on calcul machine](#to run on calcul machine)
+    - [To-run-on-calcul-machine](#to run on calcul machine)
     - [utils](#bla)
 
 -[Troubleshooting]
