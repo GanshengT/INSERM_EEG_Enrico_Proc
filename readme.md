@@ -26,6 +26,7 @@ As both sample sizes and EEG channel densities increase, traditional processing 
         - [utils_preProcessingWorkflowJuly05.py](#utils_preProcessingWorkflowJuly05.py)
         - [utils_ASR](#utils_ASR)
         - [utils_PreprocessingWorkflowJuly23UpdatedData.py](#utils_PreprocessingWorkflowJuly23UpdatedData.py)
+        -[Autoreject_report_plot.py](#Autoreject_report_plot.py)
         
     - [workflow-scripts](#workflow-scripts)
     - [jupyter-notebook-scripts](#jupyter-notebook-scripts)
@@ -121,6 +122,16 @@ This chapter explains most of the methods in folder script_tan, those not being 
                            plot_epochs_rejed =False,plot_drop_rate = True,plot_epochs_bfaft_compare = False,
                            plot_chan_hist_thresh = False
     ```
+* methods .py in preprocessing
+    #### clusterTest_topoplot
+    this file contains functions extracting relevent information from precleaned epochs. For example:
+    ```python
+    getBpAbsAndRelative4allChannels(epochs,rhythm)
+    ```
+    This function will return absolute bandpower and relative bandpower of the selecting epochs files. If epochs contain 64 EEG channels, then the return matrix dimension would be 64 * 1. To notice that you should define your own band
+    ```python
+    wavebands = {'alpha':[8,12],'theta':[3,7],'beta':[13,24],'lowG':[25,40],'highG':[60,90]}
+    ```
 ### Workflow-scripts
 Namely,;
 These two .py file translate the workflow into scripts. First is file concatenation, event engineering and ASR then to get ICA mixing matrix file. Second is to exclude ica components and to do autoreject, to get finally precleaned_full_epochs.  
@@ -136,8 +147,8 @@ compnts2exclude_ica =   defines the ica components that should be excluded, this
 
 ### jupyter notebook scripts
 These scripts stand for different philosopies of preprocessing and processing  
-    #### Autorej_local and ICA.ipynb is aimed to do autoreject first and check artifact residus by using ICA
-    ####  Autoreject_report_plot
+#### Autorej_local and ICA.ipynb is aimed to do autoreject first and check artifact residus by using ICA
+#### Other scripts's workflows are currently rejected and under evaluation, further information is available on request
 
 ## Authors
 * [**Gansheng Tan**](https://ganshengt.github.io/) - *Initial work* 
