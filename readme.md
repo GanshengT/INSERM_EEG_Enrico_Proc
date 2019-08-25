@@ -26,7 +26,10 @@ As both sample sizes and EEG channel densities increase, traditional processing 
         - [utils_preProcessingWorkflowJuly05.py](#utils_preProcessingWorkflowJuly05.py)
         - [utils_ASR](#utils_ASR)
         - [utils_PreprocessingWorkflowJuly23UpdatedData.py](#utils_PreprocessingWorkflowJuly23UpdatedData.py)
-        -[Autoreject_report_plot.py](#Autoreject_report_plot.py)
+        - [Autoreject_report_plot.py](#Autoreject_report_plot.py)
+        - [get_bp_df_roi_cluster.py](#get_bp_df_roi_cluster.py)
+        - [OP_getPsd4allSubjsAllChans.py](#OP_getPsd4allSubjsAllChans.py)
+        - [saveClusterTestNP.py](#saveClusterTestNP.py)
         
     - [workflow-scripts](#workflow-scripts)
     - [jupyter-notebook-scripts](#jupyter-notebook-scripts)
@@ -96,14 +99,17 @@ This chapter explains most of the methods in folder script_tan, those not being 
             montage_fname = 'your/path'
             preProc_ica_path = 'path for storing ica mixing matrix in the format of .fif'
             report_path = 'your/path'
+            
             ```
-            Likewise, you have to define bad channels to interpolate after the cleaning procedure and the recording file that are being contaminated.
+            
+Likewise, you have to define bad channels to interpolate after the cleaning procedure and the recording file that are being contaminated.
+            
             ```python
             reject_raw_data_session1 = {'29':['VD','FA','OP'],'30':['FA'],'36':['OP'],'74':['FA','OP','VD']}
             reject_raw_data_session2 = {'74':['FA','OP','VD'],'55':['VD']}
             bad_channels=
             ```
-            * the other methods are used while modifing the file annotations.
+ * the other methods are used while modifing the file annotations.
     #### utils_ASR.py
     those functions in this file are served as sub-methods to do ASR. There are detailed explanation for each of these functions.
         * *clean_windows* cuts segments from data which contain high-power artifacts  
@@ -132,7 +138,25 @@ This chapter explains most of the methods in folder script_tan, those not being 
     ```python
     wavebands = {'alpha':[8,12],'theta':[3,7],'beta':[13,24],'lowG':[25,40],'highG':[60,90]}
     ```
+
     Meanwhile, *getBpAbs4allChannels(epochs,rhythm)* returns only absolute bandpower. One should notice that during the transformation, psd is normalised psd= np.log10(psd * 10e12). Additionally, *cluster_stats = mne.stats.spatio_temporal_cluster_1samp_test* is permutation paired test which will return cluster statistics.
+    
+        
+    #### get_bp_df_roi_cluster.py
+    this script will extract variables and save matrix for R-analysis one has to define
+    ```python 
+    df_psd.to_csv(path_or_buf='matrix path',index = False)
+    ```
+    The matrix will have ROI (region of interest), group, state, condition, waveband as variable.
+    
+    #### OP_getPsd4allSubjsAllChans.py
+    This script will extract the power spectral density for all subjects of all channels for a certain state (OP for example), so the matrix returned will be *Number of subjects* * *Number of channels* * *psd resolution*.
+    
+    #### saveClusterTestNP.py
+    This script will create matrix that satisfy [mne permutation test](https://martinos.org/mne/stable/generated/mne.stats.spatio_temporal_cluster_1samp_test.html), and save them as txt (using pickle).
+    
+    The other two jupyter notebook files will demonstrate the order of doing statistic analysis.
+    
 ### Workflow-scripts
 Namely,;
 These two .py file translate the workflow into scripts. First is file concatenation, event engineering and ASR then to get ICA mixing matrix file. Second is to exclude ica components and to do autoreject, to get finally precleaned_full_epochs.  
