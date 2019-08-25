@@ -28,6 +28,7 @@ As both sample sizes and EEG channel densities increase, traditional processing 
         - [utils_PreprocessingWorkflowJuly23UpdatedData.py](#utils_PreprocessingWorkflowJuly23UpdatedData.py)
         
     - [workflow-scripts](#workflow-scripts)
+    - [jupyter-notebook-scripts](#jupyter notebook scripts)
 
 
 - [Troubleshooting](#troubleshooting)
@@ -38,7 +39,7 @@ As both sample sizes and EEG channel densities increase, traditional processing 
 ## Prerequest
 ### Environment
 Language we used for programming is python, python 3.5 or 3.6 is required, MNE-Python is the essential tool to preprocess the data and perform sensor-level analysis.  
-[How to install mne]  
+[How to install mne](https://www.google.com/search?q=mne+insall&oq=mne+insall&aqs=chrome..69i57j69i60l5.2133j0j4&sourceid=chrome&ie=UTF-8)
 To perform mathematical easily, we use numpy and scipy
 
 ### Database
@@ -112,8 +113,20 @@ This chapter explains most of the methods in folder script_tan, those not being 
         * *poltstab* stabilizes the polynomial with respect tp to the unit circle.  
     #### utils_PreprocessingWorkflowJuly23UpdatedData.py
     functions in this .py file are the updated version of utils_preProcessingWorkflowJuly05.py to fit better the data.
-### Workflow scripts
-These two .py file translate the workflow into scripts. First is file concatenation, event engineering and ASR then to get ICA mixing matrix file. Second is   
+### Workflow-scripts
+Namely,
+These two .py file translate the workflow into scripts. First is file concatenation, event engineering and ASR then to get ICA mixing matrix file. Second is to exclude ica components and to do autoreject, to get finally precleaned_full_epochs.  
+To be noticed:
+In PreprocessingWorkflowJuly23UpdatedDataASRIcaFit.py
+```python
+subj = sys.argv[1] is a sbatch command in order to run scripts in several CPUs.
+```
+In PreprocessingWorkflowJuly23UpdatedDataIcaExcldAutoR.py
+```python
+compnts2exclude_ica =   defines the ica components that should be excluded, this step requires visual inspection. 
+```
+
+### jupyter notebook scripts
 
 
 ## Authors
