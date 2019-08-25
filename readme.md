@@ -26,8 +26,9 @@ As both sample sizes and EEG channel densities increase, traditional processing 
         - [utils_preProcessingWorkflowJuly05.py](#utils_preProcessingWorkflowJuly05.py)
         - [utils_ASR](#utils_ASR)
         - [utils_PreprocessingWorkflowJuly23UpdatedData.py](#utils_PreprocessingWorkflowJuly23UpdatedData.py)
-    - [utils](#go-to-the-import-view)
-    - [Import the uploaded page tree file](#import-the-uploaded-page-tree-file)
+    - [To run on calcul machine](#to run on calcul machine)
+    - [utils](#bla)
+
 -[Troubleshooting]
 - [Authors](#authors)
 - [License](#license)
@@ -102,12 +103,12 @@ This chapter explains most of the methods in folder script_tan, those not being 
             * the other methods are used while modifing the file annotations.
     #### utils_ASR.py
     those functions in this file are served as sub-methods to do ASR. There are detailed explanation for each of these functions.
-        * *clean_windows* cuts segments from data which contain high-power artifacts
-        * *fit_eeg_distribution* facilitate to access quantiles
-        * *asr_calibrate*takes clean resting EEG data and estimate the thresholds used by ASR
-        * *asr_process_on_epoch*  is the main cleaning process of ASR
-        * *yulewalk* is a designed filter.
-        * *poltstab* stabilizes the polynomial with respect tp to the unit circle.
+        * *clean_windows* cuts segments from data which contain high-power artifacts  
+        * *fit_eeg_distribution* facilitate to access quantiles  
+        * *asr_calibrate*takes clean resting EEG data and estimate the thresholds used by ASR  
+        * *asr_process_on_epoch*  is the main cleaning process of ASR  
+        * *yulewalk* is a designed filter.  
+        * *poltstab* stabilizes the polynomial with respect tp to the unit circle.  
     #### utils_PreprocessingWorkflowJuly23UpdatedData.py
     functions in this .py file are the updated version of utils_preProcessingWorkflowJuly05.py to fit better the data.
 ### To run on calcul machine
