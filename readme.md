@@ -132,6 +132,7 @@ This chapter explains most of the methods in folder script_tan, those not being 
     ```python
     wavebands = {'alpha':[8,12],'theta':[3,7],'beta':[13,24],'lowG':[25,40],'highG':[60,90]}
     ```
+    Meanwhile, *getBpAbs4allChannels(epochs,rhythm)* returns only absolute bandpower. One should notice that during the transformation, psd is normalised psd= np.log10(psd * 10e12). Additionally, *cluster_stats = mne.stats.spatio_temporal_cluster_1samp_test* is permutation paired test which will return cluster statistics.
 ### Workflow-scripts
 Namely,;
 These two .py file translate the workflow into scripts. First is file concatenation, event engineering and ASR then to get ICA mixing matrix file. Second is to exclude ica components and to do autoreject, to get finally precleaned_full_epochs.  
