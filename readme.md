@@ -28,7 +28,7 @@ As both sample sizes and EEG channel densities increase, traditional processing 
         - [utils_PreprocessingWorkflowJuly23UpdatedData.py](#utils_PreprocessingWorkflowJuly23UpdatedData.py)
         
     - [workflow-scripts](#workflow-scripts)
-    - [jupyter-notebook-scripts](#jupyter notebook scripts)
+    - [jupyter-notebook-scripts](#jupyter-notebook-scripts)
 
 
 - [Troubleshooting](#troubleshooting)
@@ -113,8 +113,16 @@ This chapter explains most of the methods in folder script_tan, those not being 
         * *poltstab* stabilizes the polynomial with respect tp to the unit circle.  
     #### utils_PreprocessingWorkflowJuly23UpdatedData.py
     functions in this .py file are the updated version of utils_preProcessingWorkflowJuly05.py to fit better the data.
+    ####  Autoreject_report_plot.py
+    there is one function *Autoreject_report_plot* in this file which takes *autoreject object*, *epochs before autoreject*, *epochs after atoreject* as arguments, then return different plot to evaluate the cleaning performance.
+    you can set ```=True``` to visualise one plot.
+    ```python
+    plot_err_matrix = False,plot_epochs_rej_intpl = True,
+                           plot_epochs_rejed =False,plot_drop_rate = True,plot_epochs_bfaft_compare = False,
+                           plot_chan_hist_thresh = False
+    ```
 ### Workflow-scripts
-Namely,
+Namely,;
 These two .py file translate the workflow into scripts. First is file concatenation, event engineering and ASR then to get ICA mixing matrix file. Second is to exclude ica components and to do autoreject, to get finally precleaned_full_epochs.  
 To be noticed:
 In PreprocessingWorkflowJuly23UpdatedDataASRIcaFit.py
@@ -127,7 +135,9 @@ compnts2exclude_ica =   defines the ica components that should be excluded, this
 ```
 
 ### jupyter notebook scripts
-
+These scripts stand for different philosopies of preprocessing and processing  
+    #### Autorej_local and ICA.ipynb is aimed to do autoreject first and check artifact residus by using ICA
+    ####  Autoreject_report_plot
 
 ## Authors
 * [**Gansheng Tan**](https://ganshengt.github.io/) - *Initial work* 
