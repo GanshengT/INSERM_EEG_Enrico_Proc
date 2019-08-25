@@ -26,10 +26,11 @@ As both sample sizes and EEG channel densities increase, traditional processing 
         - [utils_preProcessingWorkflowJuly05.py](#utils_preProcessingWorkflowJuly05.py)
         - [utils_ASR](#utils_ASR)
         - [utils_PreprocessingWorkflowJuly23UpdatedData.py](#utils_PreprocessingWorkflowJuly23UpdatedData.py)
-    - [To-run-on-calcul-machine](#to run on calcul machine)
-    - [utils](#bla)
+        
+    - [workflow scripts](#workflow script)
 
--[Troubleshooting]
+
+- [Troubleshooting]
 - [Authors](#authors)
 - [License](#license)
 - [Extentions](#links)
@@ -111,7 +112,7 @@ This chapter explains most of the methods in folder script_tan, those not being 
         * *poltstab* stabilizes the polynomial with respect tp to the unit circle.  
     #### utils_PreprocessingWorkflowJuly23UpdatedData.py
     functions in this .py file are the updated version of utils_preProcessingWorkflowJuly05.py to fit better the data.
-### To run on calcul machine
+### Workflow scripts
 These two .py file translate the workflow into scripts. First is file concatenation, event engineering and ASR then to get ICA mixing matrix file. Second is   
 
 
